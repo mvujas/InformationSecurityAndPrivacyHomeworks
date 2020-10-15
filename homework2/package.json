@@ -1,0 +1,15 @@
+{
+  "name": "isap_hw2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ex3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "btoa": "^1.2.1",
+    "websocket": "^1.0.32"
+  }
+}

