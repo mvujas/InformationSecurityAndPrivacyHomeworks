@@ -40,5 +40,31 @@ Fourth and fifth bytes (Bytes 3 and 4) are length of data (exluding the header i
     This cipher suite should be replaced with
     TLS_RSA_WITH_AES_128_CBC_SHA - 0x002F.
 
-Temporary
-    veth400227f - mitm
+
+
+Exercise 3
+----------
+
+B: Self signed cerificate
+-------------------------
+Generate key using:
+
+    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+
+Common name should be server (has something to do because the server is in Docker container).
+The generated keys is in /etc/ssl/private/nginx-selfsigned.key and certificate is in /etc/ssl/certs/nginx-selfsigned.crt.
+Copy these file into folder certs into server (Docker file is setup to copy them on proper location in container aferwards).
+Make yourself the owner of .key file, otherwise you nor Docker will be able to read it.
+
+C: Signed certificate
+---------------------
+Run 
+
+    openssl genrsa -out request.key 2048
+    openssl req -new -key request.key -out request.csr
+
+Common name should still be server.
+Place csr file next to docker-compose.yml and then start the container, it has a program that should generate a
+certificate (.crt) out of the request file (.csr). Place given files into server/certs and Dockerfile should do the rest.
+default.conf should be updated accordingly, but it is already done here.
+Check certificate to see who is CA, it should be verifier (don't name anything about your organisation verifier to avoid confusion).
