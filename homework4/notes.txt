@@ -55,6 +55,7 @@ Common name should be server (has something to do because the server is in Docke
 The generated keys is in /etc/ssl/private/nginx-selfsigned.key and certificate is in /etc/ssl/certs/nginx-selfsigned.crt.
 Copy these file into folder certs into server (Docker file is setup to copy them on proper location in container aferwards).
 Make yourself the owner of .key file, otherwise you nor Docker will be able to read it.
+Seems it is enough to add "ssl on" and key and certificate in conf file in order for HTTPS to work properly.
 
 C: Signed certificate
 ---------------------
@@ -68,3 +69,10 @@ Place csr file next to docker-compose.yml and then start the container, it has a
 certificate (.crt) out of the request file (.csr). Place given files into server/certs and Dockerfile should do the rest.
 default.conf should be updated accordingly, but it is already done here.
 Check certificate to see who is CA, it should be verifier (don't name anything about your organisation verifier to avoid confusion).
+
+
+D: Add HSTS
+-----------
+HSTS is enabled by adding 
+    add_header Strict-Transport-Security "max-age=63072000; includeSubdomains";
+to configuration part of HTTPS server.
