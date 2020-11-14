@@ -1,0 +1,6 @@
+Download and run container:
+    docker run --rm -it -p 5001:5001 --name hw5ex1 com402/hw5ex1
+Accesing DB:
+    Access the container directly with: docker exec -it hw5ex1 /bin/bash
+    Access the database with: mysql -u<username> -p<password>    
+    The credentials are stored in the /root/credentials.cfg file.
