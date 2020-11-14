@@ -20,4 +20,4 @@ function hash(msg,key) {
 
 // Just apply hash function on username 
 // (may work with other usernames other admin, I haven't checked)
-console.log(hash('admin', mySecureOneTimePad));
+console.log(hash('perica', mySecureOneTimePad));
