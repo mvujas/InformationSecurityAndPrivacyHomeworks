@@ -4,3 +4,17 @@ Accesing DB:
     Access the container directly with: docker exec -it hw5ex1 /bin/bash
     Access the database with: mysql -u<username> -p<password>    
     The credentials are stored in the /root/credentials.cfg file.
+
+
+Exercise 2
+----------
+Copying file from container to the host: 
+    docker cp hw5ex2:site.py site.py
+Aliases are ready in aliases.sh (run it with "source aliases.sh"),
+they can be used in order to save time.
+
+Run new site.py:
+    chmod +x site.py
+    ./site.py
+But this will fail for some reason, to fix this run "sh startup.sh" from the container once, no need
+to rerun it after adding every new site.py.
