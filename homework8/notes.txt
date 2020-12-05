@@ -1,0 +1,15 @@
+Exercise 1:
+If we send inputs x as: x' = x * a, and server have y as: y' = y * b in order to avoid use of floating points.
+Then x * y = (x' * x') / (a * b) meaning that we have to divide the result by both base * exponent we used for x 
+and the one the server used for y (in case of this exercise w). For n bits of precision, we can transform float
+into integer by multiplying it by 2^n and taking its floor.
+
+Exercise 2: 
+The result of linear expression is of form x.w+b (dot product of input and weights).
+These models are easy to attack as for example take x = (x1 = 0, x2 = 0, ..., xi = 1, ..., xn = 0).
+When we make product of this x and w [(w1, w2, ..., wn)] we get result:
+
+    x.w+b = (x1, x2, ..., xn).(w1, w2, ..., wn) = x1*w1 + x2*w2 + ... + xi*wi + .. + xn*wn + b = wi + b /only xi is equal 1 and all else are 0/
+
+Repeating these for all i in [1, n] we get weights and therefore whole model. 
+Bias [b in formulas] can be obtained by passing zero vector to the model.
