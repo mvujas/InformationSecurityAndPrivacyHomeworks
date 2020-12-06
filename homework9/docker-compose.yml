@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+  miner_1:
+    image: com402/hw9_miner
+    container_name: miner-1
+    hostname: miner.1
+    command: "miner.1 miner.2,miner.s genesis"
+    networks:
+      bc_network:
+        aliases:
+        - miner.1
+    logging:
+      driver: none
+  miner_2:
+    image: com402/hw9_miner
+    container_name: miner-2
+    hostname: miner.2
+    command: "miner.2 miner.1,miner.s"
+    networks:
+      bc_network:
+        aliases:
+          - miner.2
+    logging:
+      driver: none
+  miner_s:
+    hostname: miner.s
+    container_name: miner-s
+    build: .
+    command: "miner.s miner.1,miner.2"
+    networks:
+      bc_network:
+        aliases:
+          - miner.s
+    logging:
+      driver: json-file
+
+networks:
+  bc_network:
+    driver: bridge
